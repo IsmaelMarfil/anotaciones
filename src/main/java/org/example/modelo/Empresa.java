@@ -1,31 +1,26 @@
 package org.example.modelo;
 
-import org.example.anotaciones.Empleado;
-import org.example.anotaciones.Empleados;
+import org.example.anotaciones.EmpleadoAnot;
 
-import java.lang.annotation.Annotation;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
-@Empleado(nombre = "Ismael", apellidos = "", DNI = "", direccion = "", telefono = "", clase = "", codigoDespacho = 0)
+@EmpleadoAnot(nombre = "Ismael", apellidos = "Marfil", DNI = "12345678A", direccion = "Calle Goya 33", telefono = "666666666")
+@EmpleadoAnot(nombre = "Jose", apellidos = "Lopez", DNI = "12345678B", direccion = "Calle Goya 34", telefono = "777666666")
 public class Empresa {
-    Set<org.example.modelo.Empleado> empleadoList;
+    private Set<Empleado> empleadoSet = new HashSet<>();
 
     public Empresa(){
 
     }
 
-    public static void cargadorcontexto(Empresa empresa) {
-        empresa.getClass().getAnnotation(Empleados.class);
-        Annotation[] anotaciones = empresa.getClass().getAnnotations();
+    public Set<Empleado> getEmpleadoSet() {
+        return empleadoSet;
+    }
 
-        for (Annotation annotation:
-            anotaciones ) {
-            if(annotation instanceof org.example.anotaciones.Empleado){
-                String nombre = ((org.example.anotaciones.Empleado) annotation).nombre();
-                System.out.println(annotation);
-            }
-        }
-
+    public void setEmpleadoSet(Set<Empleado> empledoSet) {
+        this.empleadoSet = empledoSet;
     }
 }
+
+
